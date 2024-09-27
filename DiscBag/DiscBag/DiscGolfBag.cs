@@ -45,7 +45,7 @@ namespace DiscBag
                     "3. Clear all discs from bag. \n" +
                     "4. Print out bag");
 
-
+                // test
                 switch (Console.ReadKey().Key)
                 {
                     case ConsoleKey.D1:
