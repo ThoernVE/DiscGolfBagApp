@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace DiscBag
 {
-    public class DistanceDriver : Disc
+    public class DistanceDriver : Disc //subclass for Distance Driver Discs that inherits from parentclass disc.
     {
+        //Construtor for adding a DistanceDriver-object
         public DistanceDriver(string brand, string name, string colour, int speed, int glide, int turn, int fade)
         {
             this.brand = brand;
@@ -19,6 +20,8 @@ namespace DiscBag
             this.fade = fade;
         }
 
+        ////function for adding a Distance Driver Disc. Takes values from the TypeDiscSwitch in Discs to get userinputs.
+        //Then prints the disc that has been added and adds it to the Dictionary through the DiscGolfBag-class.
         public static void AddDistanceDriver(string brand, string name, string colour,
             int speed, int glide, int turn, int fade)
         {

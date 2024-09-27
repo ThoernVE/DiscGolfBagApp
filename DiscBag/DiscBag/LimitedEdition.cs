@@ -2,8 +2,9 @@
 
 namespace DiscBag
 {
-    internal class LimitedEdition : Disc
+    internal class LimitedEdition : Disc //subclass for limited edition discs that inherit from parentclass Disc.
     {
+        //constructor for creating a limitedEdition Disc
         public LimitedEdition(string brand, string name, string colour, int speed, int glide, int turn, int fade)
         {
             this.brand = brand;
@@ -15,6 +16,8 @@ namespace DiscBag
             this.fade = fade;
         }
 
+        //function for adding a Limited Edition Disc. Takes values from the TypeDiscSwitch in Discs to get userinputs.
+        //Then prints the disc that has been added and adds it to the Dictionary through the DiscGolfBag-class.
         internal static void AddLimitedDisc(string brand, string name,
                 string colour, int speed,
                 int glide, int turn,

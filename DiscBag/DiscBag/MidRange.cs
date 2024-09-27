@@ -2,8 +2,9 @@
 
 namespace DiscBag
 {
-    internal class MidRange : Disc
+    internal class MidRange : Disc //subclass for Midrange Discs that inherits from parentclass disc.
     {
+        //Construtor that makes a MidRange-object
         public MidRange(string brand, string name, string colour, int speed, int glide, int turn, int fade)
         {
             this.brand = brand;
@@ -15,6 +16,8 @@ namespace DiscBag
             this.fade = fade;
         }
 
+        ////function for adding a MidRange-disc. Takes values from the TypeDiscSwitch in Discs to get userinputs.
+        //Then prints the disc that has been added and adds it to the Dictionary through the DiscGolfBag-class.
         internal static void AddMidRange(string brand, string name,
             string colour, int speed,
             int glide, int turn, int fade)

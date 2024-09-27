@@ -10,8 +10,8 @@ namespace DiscBag
     {
         static void Main(string[] args)
         {
-            Disc.AddDisc();
-            DiscGolfBag.PrintBag();
+            //calling the method from DiscGolfBag-class to start menu.
+            DiscGolfBag.GolfBagMenu();
         }
     }
 }
