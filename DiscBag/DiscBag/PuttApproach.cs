@@ -3,8 +3,9 @@ using System.Xml.Linq;
 
 namespace DiscBag
 {
-    internal class PuttApproach : Disc
+    internal class PuttApproach : Disc //subclass for Putt & Approach Discs that inherits from parentclass disc.
     {
+        //Constructor that creates a PuttApproach-object
         public PuttApproach(string brand, string name, string colour, int speed, int glide, int turn, int fade)
         {
             this.brand = brand;
@@ -16,6 +17,9 @@ namespace DiscBag
             this.fade = fade;
         }
 
+
+        ////function for adding a PuttApproach Disc. Takes values from the TypeDiscSwitch in Discs to get userinputs.
+        //Then prints the disc that has been added and adds it to the Dictionary through the DiscGolfBag-class.
         internal static void AddPuttApproach(string brand, string name,
                 string colour, int speed,
                 int glide, int turn,

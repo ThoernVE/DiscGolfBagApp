@@ -10,6 +10,7 @@ namespace DiscBag
     {
         static void Main(string[] args)
         {
+            //calling the method from DiscGolfBag-class to start menu.
             DiscGolfBag.GolfBagMenu();
         }
     }
