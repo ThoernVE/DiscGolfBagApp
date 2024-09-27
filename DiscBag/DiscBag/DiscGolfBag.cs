@@ -43,7 +43,8 @@ namespace DiscBag
                     "1. Add disc to your bag.\n" +
                     "2. Remove disc from your bag. \n" +
                     "3. Clear all discs from bag. \n" +
-                    "4. Print out bag");
+                    "4. Print out bag\n" +
+                    "Esc. To close program.");
 
                 // test
                 switch (Console.ReadKey().Key)
@@ -53,8 +54,21 @@ namespace DiscBag
                         break;
 
                     case ConsoleKey.D2:
-                        Console.WriteLine();
+                        RemoveDisc();
                         break;
+
+                    case ConsoleKey.D3:
+                        ClearBag();
+                        break;
+
+                    case ConsoleKey.D4:
+                        PrintBag();
+                        break;
+
+                    case ConsoleKey.Escape:
+                        return;
+
+
                 }
             }
         }
