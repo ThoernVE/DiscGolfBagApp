@@ -23,7 +23,7 @@ namespace DiscBag
 
         public static void RemoveDisc()
         {   //Function that removs a disc from the dictionary by using the key typed in by the user.
-            Console.WriteLine("Please enter the name of the disc you wanna remove");
+            Console.WriteLine("\nPlease enter the name of the disc you wanna remove");
             string removedDisc = Console.ReadLine();
             Console.WriteLine($"Following disc has been removed {removedDisc}");
             golfBag.Remove(removedDisc);
@@ -53,31 +53,36 @@ namespace DiscBag
             //while-loop to keep the program running until Esc-button is pressed by using return-method in switch
             while (true)
             {
+                Console.Clear();
                 //menu for pressable-keys in switch
                 Console.WriteLine("Please choose from the list below\n" +
                     "1. Add disc to your bag.\n" +
                     "2. Remove disc from your bag. \n" +
                     "3. Clear all discs from bag. \n" +
                     "4. Print out bag\n" +
-                    "Esc. To close program.");
+                    "Esc. To close program.\n");
 
                 // switch-case that uses Console.Readkey to manage a menu of functions
                 switch (Console.ReadKey().Key)
                 {
                     case ConsoleKey.D1:
                         Disc.AddDisc();
+                        Cleanup();
                         break;
 
                     case ConsoleKey.D2:
                         RemoveDisc();
+                        Cleanup();
                         break;
 
                     case ConsoleKey.D3:
                         ClearBag();
+                        Cleanup();
                         break;
 
                     case ConsoleKey.D4:
                         PrintBag();
+                        Cleanup();
                         break;
 
                     //closes the program with return keyword
@@ -87,6 +92,13 @@ namespace DiscBag
 
                 }
             }
+        }
+
+        public static void Cleanup()
+        {
+            Console.WriteLine("Please press a key to continue");
+            Console.ReadKey();
+            Console.Clear();
         }
 
         public static void SaveData()
@@ -101,19 +113,6 @@ namespace DiscBag
                 sw.Write(serializedObject);
 
             }
-
-            Dictionary<string, Disc> dict = JsonConvert.DeserializeObject<Dictionary<string, Disc>>(serializedObject);
-
-            foreach (var disc in dict)
-            {
-                Console.WriteLine(disc.Key);
-            }
-
-
-
-
-
-
         }
 
 
