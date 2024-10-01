@@ -1,12 +1,19 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Net.Mime;
+using System.Runtime.Serialization;
 
 namespace DiscBag
 {
     internal class DiscGolfBag
     {
         //Dictionary for storage of Disc-objects.
-        static Dictionary<string, Disc> golfBag = new Dictionary<string, Disc>();  
+        public static Dictionary<string, Disc> golfBag = new Dictionary<string, Disc>();
+        public static List<Disc> discList = new List<Disc>();
 
         internal static void AddToBag(Disc addedDisc)
         {
@@ -81,5 +88,57 @@ namespace DiscBag
                 }
             }
         }
+
+        public static void SaveData()
+        {
+
+            var serializedObject = Newtonsoft.Json.JsonConvert.SerializeObject(golfBag);
+
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            string filePath = Path.Combine(path, "saveFile.json");
+            using (StreamWriter sw = new StreamWriter(filePath))
+            {
+                sw.Write(serializedObject);
+
+            }
+
+            Dictionary<string, Disc> dict = JsonConvert.DeserializeObject<Dictionary<string, Disc>>(serializedObject);
+
+            foreach (var disc in dict)
+            {
+                Console.WriteLine(disc.Key);
+            }
+
+
+
+
+
+
+        }
+
+
+        public static void LoadData()
+        {
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+
+            string filePath = Path.Combine(path, "saveFile.json");
+
+            string content = null;
+            using (StreamReader sr = new StreamReader(filePath))
+            {
+                content = sr.ReadToEnd();
+            }
+
+
+            Dictionary<string, Disc> loadedBag = JsonConvert.DeserializeObject<Dictionary<string, Disc>>(content); 
+
+            foreach (var disc in loadedBag)
+            {
+                golfBag.Add(disc.Key, disc.Value);
+            }
+
+
+        }
+
     }
 }
