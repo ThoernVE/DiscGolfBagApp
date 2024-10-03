@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace DiscBag
 {
@@ -10,8 +12,11 @@ namespace DiscBag
     {
         static void Main(string[] args)
         {
-            //calling the method from DiscGolfBag-class to start menu.
+            DiscGolfBag.LoadData();
             DiscGolfBag.GolfBagMenu();
+            DiscGolfBag.SaveData();
+            //calling the method from DiscGolfBag-class to start menu.
+           
         }
     }
 }

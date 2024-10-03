@@ -1,12 +1,19 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Net.Mime;
+using System.Runtime.Serialization;
 
 namespace DiscBag
 {
     internal class DiscGolfBag
     {
         //Dictionary for storage of Disc-objects.
-        static Dictionary<string, Disc> golfBag = new Dictionary<string, Disc>();  
+        public static Dictionary<string, Disc> golfBag = new Dictionary<string, Disc>();
+        public static List<Disc> discList = new List<Disc>();
 
         internal static void AddToBag(Disc addedDisc)
         {
@@ -16,7 +23,7 @@ namespace DiscBag
 
         public static void RemoveDisc()
         {   //Function that removs a disc from the dictionary by using the key typed in by the user.
-            Console.WriteLine("Please enter the name of the disc you wanna remove");
+            Console.WriteLine("\nPlease enter the name of the disc you wanna remove");
             string removedDisc = Console.ReadLine();
             Console.WriteLine($"Following disc has been removed {removedDisc}");
             golfBag.Remove(removedDisc);
@@ -46,31 +53,36 @@ namespace DiscBag
             //while-loop to keep the program running until Esc-button is pressed by using return-method in switch
             while (true)
             {
+                Console.Clear();
                 //menu for pressable-keys in switch
                 Console.WriteLine("Please choose from the list below\n" +
                     "1. Add disc to your bag.\n" +
                     "2. Remove disc from your bag. \n" +
                     "3. Clear all discs from bag. \n" +
                     "4. Print out bag\n" +
-                    "Esc. To close program.");
+                    "Esc. To close program.\n");
 
                 // switch-case that uses Console.Readkey to manage a menu of functions
                 switch (Console.ReadKey().Key)
                 {
                     case ConsoleKey.D1:
                         Disc.AddDisc();
+                        Cleanup();
                         break;
 
                     case ConsoleKey.D2:
                         RemoveDisc();
+                        Cleanup();
                         break;
 
                     case ConsoleKey.D3:
                         ClearBag();
+                        Cleanup();
                         break;
 
                     case ConsoleKey.D4:
                         PrintBag();
+                        Cleanup();
                         break;
 
                     //closes the program with return keyword
@@ -81,5 +93,51 @@ namespace DiscBag
                 }
             }
         }
+
+        public static void Cleanup()
+        {
+            Console.WriteLine("Please press a key to continue");
+            Console.ReadKey();
+            Console.Clear();
+        }
+
+        public static void SaveData()
+        {
+
+            var serializedObject = Newtonsoft.Json.JsonConvert.SerializeObject(golfBag);
+
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            string filePath = Path.Combine(path, "saveFile.json");
+            using (StreamWriter sw = new StreamWriter(filePath))
+            {
+                sw.Write(serializedObject);
+
+            }
+        }
+
+
+        public static void LoadData()
+        {
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+
+            string filePath = Path.Combine(path, "saveFile.json");
+
+            string content = null;
+            using (StreamReader sr = new StreamReader(filePath))
+            {
+                content = sr.ReadToEnd();
+            }
+
+
+            Dictionary<string, Disc> loadedBag = JsonConvert.DeserializeObject<Dictionary<string, Disc>>(content); 
+
+            foreach (var disc in loadedBag)
+            {
+                golfBag.Add(disc.Key, disc.Value);
+            }
+
+
+        }
+
     }
 }
