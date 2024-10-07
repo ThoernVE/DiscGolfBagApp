@@ -29,7 +29,7 @@ namespace DiscBag
         public static void AddDisc() //Function that collects userinputs and sends that information to TypeDiscSwitch-function.
             //Uses functions in order to collect data and verify it for speed, glide and turn.
         {
-            Console.WriteLine("Please add the following of the disc you would like to add:\n" +
+            Console.WriteLine("\nPlease add the following of the disc you would like to add:\n" +
             "Brand");
             string brand = Console.ReadLine();
             Console.WriteLine("Name");

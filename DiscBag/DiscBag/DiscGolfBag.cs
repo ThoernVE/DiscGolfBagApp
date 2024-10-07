@@ -12,20 +12,21 @@ namespace DiscBag
     internal class DiscGolfBag
     {
         //Dictionary for storage of Disc-objects.
-        public static Dictionary<string, Disc> golfBag = new Dictionary<string, Disc>();
+        public static Dictionary<int, Disc> golfBag = new Dictionary<int, Disc>();
         public static List<Disc> discList = new List<Disc>();
 
         internal static void AddToBag(Disc addedDisc)
         {
             //function that adds disc-object to the list. Is called from "AddDisc"-function in Disc-class.
-            golfBag.Add(addedDisc.name, addedDisc);
+            golfBag.Add(golfBag.Count +1, addedDisc);
         }
 
         public static void RemoveDisc()
         {   //Function that removs a disc from the dictionary by using the key typed in by the user.
-            Console.WriteLine("\nPlease enter the name of the disc you wanna remove");
-            string removedDisc = Console.ReadLine();
-            Console.WriteLine($"Following disc has been removed {removedDisc}");
+            PrintBag();
+            Console.WriteLine("\nPlease enter the number of the disc you wanna remove");
+            int removedDisc = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine($"\n Following disc has been removed {golfBag[removedDisc]}");
             golfBag.Remove(removedDisc);
 
             //Lägg till sökfunktion för att säkerställa att en disc tas bort!
@@ -36,6 +37,7 @@ namespace DiscBag
             //foreach-loop that prints the disc-objects in the dictionary
             foreach (var disc in golfBag)
             {
+                Console.WriteLine("");
                 Console.WriteLine(disc);
             }
         }
@@ -96,7 +98,7 @@ namespace DiscBag
 
         public static void Cleanup()
         {
-            Console.WriteLine("Please press a key to continue");
+            Console.WriteLine("Please press any key to continue");
             Console.ReadKey();
             Console.Clear();
         }
@@ -129,7 +131,7 @@ namespace DiscBag
             }
 
 
-            Dictionary<string, Disc> loadedBag = JsonConvert.DeserializeObject<Dictionary<string, Disc>>(content); 
+            Dictionary<int, Disc> loadedBag = JsonConvert.DeserializeObject<Dictionary<int, Disc>>(content); 
 
             foreach (var disc in loadedBag)
             {
