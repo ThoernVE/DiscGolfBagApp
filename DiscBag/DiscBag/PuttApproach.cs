@@ -29,7 +29,7 @@ namespace DiscBag
                 colour, speed,
                 glide, turn,
                  fade);
-            Console.WriteLine($"The following Putt & Approach disc has been added {puttApproach}");
+            Console.WriteLine($"\nThe following Putt & Approach disc has been added {puttApproach}");
             DiscGolfBag.AddToBag(puttApproach);
         }
     }

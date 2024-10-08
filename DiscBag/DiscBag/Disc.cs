@@ -204,13 +204,13 @@ namespace DiscBag
                         break;
 
                     default:
-                        Console.WriteLine("This number was not correct. Please try again.");
+                        Console.WriteLine("\nThis number was not correct. Please try again.");
                         break;
                 }
             }
             catch // catch prints errormessage and calls the function again with the same parameters.
             {
-                Console.WriteLine("The input was not correct. Please enter a number.");
+                Console.WriteLine("\nThe input was not correct. Please enter a number.");
                 TypeDiscSwitch(brand, name, colour, speed, glide, turn, fade);
             }
         }

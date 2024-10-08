@@ -26,7 +26,7 @@ namespace DiscBag
                 colour, speed,
                 glide, turn,
                  fade);
-            Console.WriteLine($"The following Limited Edition-disc has been added {specialtyDisc}");
+            Console.WriteLine($"\nThe following Limited Edition-disc has been added {specialtyDisc}");
             DiscGolfBag.AddToBag(specialtyDisc);
         }
     }

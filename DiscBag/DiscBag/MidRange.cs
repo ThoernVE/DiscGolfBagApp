@@ -26,7 +26,7 @@ namespace DiscBag
                 colour, speed,
                 glide, turn,
                 fade);
-            Console.WriteLine($"The following Midrange-disc has been added {midRange}");
+            Console.WriteLine($"\nThe following Midrange-disc has been added {midRange}");
             DiscGolfBag.AddToBag(midRange);
         }
     }

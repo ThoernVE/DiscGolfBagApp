@@ -26,7 +26,7 @@ namespace DiscBag
                 colour, speed,
                 glide, turn,
                 fade);
-            Console.WriteLine($"The following Fairway driver-disc has been added {fairwayDriver}");
+            Console.WriteLine($"\nThe following Fairway driver-disc has been added {fairwayDriver}");
             DiscGolfBag.AddToBag(fairwayDriver);
         }
     }
