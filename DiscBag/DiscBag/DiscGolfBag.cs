@@ -9,8 +9,9 @@ using System.Runtime.Serialization;
 
 namespace DiscBag
 {
-    internal class DiscGolfBag
+    internal class DiscGolfBag : LogIn
     {
+
         //Dictionary for storage of Disc-objects.
         public static Dictionary<int, Disc> golfBag = new Dictionary<int, Disc>();
         public static List<Disc> discList = new List<Disc>();
@@ -108,8 +109,6 @@ namespace DiscBag
 
             var serializedObject = Newtonsoft.Json.JsonConvert.SerializeObject(golfBag);
 
-            string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            string filePath = Path.Combine(path, "saveFile.json");
             using (StreamWriter sw = new StreamWriter(filePath))
             {
                 sw.Write(serializedObject);
@@ -120,22 +119,24 @@ namespace DiscBag
 
         public static void LoadData()
         {
-            string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-
-            string filePath = Path.Combine(path, "saveFile.json");
-
-            string content = null;
-            using (StreamReader sr = new StreamReader(filePath))
+            try
             {
-                content = sr.ReadToEnd();
+                string content = null;
+                using (StreamReader sr = new StreamReader(filePath))
+                {
+                    content = sr.ReadToEnd();
+                }
+
+
+                Dictionary<int, Disc> loadedBag = JsonConvert.DeserializeObject<Dictionary<int, Disc>>(content);
+
+                foreach (var disc in loadedBag)
+                {
+                    golfBag.Add(disc.Key, disc.Value);
+                }
             }
-
-
-            Dictionary<int, Disc> loadedBag = JsonConvert.DeserializeObject<Dictionary<int, Disc>>(content); 
-
-            foreach (var disc in loadedBag)
+            catch
             {
-                golfBag.Add(disc.Key, disc.Value);
             }
 
 

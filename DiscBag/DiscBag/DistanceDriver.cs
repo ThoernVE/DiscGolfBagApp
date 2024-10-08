@@ -29,7 +29,7 @@ namespace DiscBag
                 colour, speed,
                 glide, turn,
                 fade);
-            Console.WriteLine($"The following Distance driver-disc has been added {distanceDriver}");
+            Console.WriteLine($"\nThe following Distance driver-disc has been added {distanceDriver}");
             DiscGolfBag.AddToBag(distanceDriver);
         }
 
