@@ -97,14 +97,14 @@ namespace DiscBag
             }
         }
 
-        public static void Cleanup()
+        public static void Cleanup() //cleanupmethod to clear the console and create a better console-UI.
         {
             Console.WriteLine("Please press any key to continue");
             Console.ReadKey();
             Console.Clear();
         }
 
-        public static void SaveData()
+        public static void SaveData() //method for saving the disc-data in a JSON file
         {
 
             var serializedObject = Newtonsoft.Json.JsonConvert.SerializeObject(golfBag);
@@ -117,7 +117,7 @@ namespace DiscBag
         }
 
 
-        public static void LoadData()
+        public static void LoadData() //method that reads and saves disc-data from a JSON file and puts it into golfBag-dictionary
         {
             try
             {
